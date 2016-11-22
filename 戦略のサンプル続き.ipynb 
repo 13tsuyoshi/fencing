@@ -1,0 +1,567 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[['a', 'a'], ['a', 'a'], ['b', 'a'], ['r', 'a']]"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "y=[[\"a\"],[\"a\"],[\"b\"],[\"r\"]]\n",
+    "for i in range(len(y)):\n",
+    "    y[i].append(\"a\")\n",
+    "y"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 't' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-1-5fc67b4908d1>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[1;32m      9\u001b[0m         \u001b[0mkimeuchi\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mi\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m]\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mrandom\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mchoice\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mz\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;31m#リストから一個をランダム抽出http://qiita.com/yubais/items/bf9ce0a8fefdcc0b0c97\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     10\u001b[0m \u001b[0mkimeuchi\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0;36m2\u001b[0m\u001b[0;31m#六十回分とりあえず決めた\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 11\u001b[0;31m \u001b[0mresult1\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mkimeuchi\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mt\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;31m#player1と仮定\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m: name 't' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "#あらかじめ手を決めておく戦略\n",
+    "from numpy import*\n",
+    "kimeuchi=[[\"a\"],[\"a\"],[\"b\"],[\"r\"]]\n",
+    "for i in range(len(kimeuchi)):\n",
+    "    kimeuchi[i].append(\"a\")\n",
+    "z= [\"b\",\"r\"]\n",
+    "for i in range(len(kimeuchi)):\n",
+    "    if kimeuchi[i][0]==\"a\":\n",
+    "        kimeuchi[i][1] = random.choice(z)#リストから一個をランダム抽出http://qiita.com/yubais/items/bf9ce0a8fefdcc0b0c97\n",
+    "kimeuchi*2#六十回分とりあえず決めた\n",
+    "result1 = kimeuchi[t]#player1と仮定"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[['a', 'a'], ['r', 'a'], ['a', 'a'], ['r', 'a'], ['b', 'a']]"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#最初はattack一回前に出した手は使わず、残りをランダムにして手を出してしまう戦略\n",
+    "tekito = [[\"a\" for i in range(2)] for j in range(5)]#http://sonickun.hatenablog.com/entry/2014/06/13/132821より\n",
+    "z=[\"b\",\"r\"]\n",
+    "v=[\"a\",\"b\",\"r\"]\n",
+    "for i in range(1,len(tekito)):\n",
+    "        v.remove(tekito[i-1][0])\n",
+    "        tekito[i][0]= random.choice(v)\n",
+    "        v.append(tekito[i-1][0])\n",
+    "        if [i][0]==\"a\":\n",
+    "            tekito[i][1] = random.choice(z)\n",
+    "result2=tekito[t]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "hello\n"
+     ]
+    }
+   ],
+   "source": [
+    "x=[\"a\",\"b\"]\n",
+    "if \"a\" in x:\n",
+    "    print(\"hello\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [],
+   "source": [
+    "#利得表を返す関数\n",
+    "#\n",
+    "#result1= 戦略の関数() でresult1= [自分の手,相手の手の予想]　result2= 戦略の関数() でresult2= [自分の手,相手の手の予想]とした上で\n",
+    "from numpy import *\n",
+    "point=[]\n",
+    "result1 = [\"a\",\"a\"] \n",
+    "result2 = [\"a\",\"b\"]\n",
+    "def ritoku(h,j,k,l,m,n,o,pq,r,s,t,u,v,a=[0.5,0.25,0.25],b=[0.0,0.3,0.7],c= [0.0,0.1,0.9],d=[0.3,0.6,0.1],e=[0.0,0.4,0.6],f=[0.0,0.4,0.6],g=[0.3,0.6,0.1]):\n",
+    "    #point= []#point　= [[一回目のplayer1の得点,一回目のplayer2の得点],[2回目のplayer1の得点,2回目のplayer2の得点]と続いていく]\n",
+    "    x=[[0,0],[1,0],[0,1]]\n",
+    "    y=[0,1,2]\n",
+    "    if (result1== [\"a\",\"b\"] and result2 == [\"a\",\"b\"]) or (result1== [\"a\",\"b\"] and result2 == [\"a\",\"r\"])\\\n",
+    "    or (result1== [\"a\",\"b\"] and result2 == [\"b\",\"r\"]) or (result1== [\"a\",\"b\"] and result2 == [\"b\",\"b\"])\\\n",
+    "    or (result1== [\"a\",\"b\"] and result2 == [\"a\",\"r\"]) or (result1== [\"a\",\"b\"] and result2 == [\"r\",\"b\"])\\\n",
+    "    or (result1== [\"a\",\"b\"] and result2 == [\"r\",\"r\"]) or (result1== [\"a\",\"r\"] and result2 == [\"a\",\"r\"])\\\n",
+    "    or (result1== [\"a\",\"r\"] and result2 == [\"b\",\"b\"]) or (result1== [\"a\",\"r\"] and result2 == [\"b\",\"r\"])\\\n",
+    "    or (result1== [\"a\",\"r\"] and result2 == [\"r\",\"b\"]) or (result1== [\"a\",\"r\"] and result2 == [\"r\",\"r\"])\\\n",
+    "    or (result1== [\"b\",\"a\"] and result2 == [\"b\",\"a\"]) or (result1== [\"b\",\"a\"] and result2 == [\"r\",\"a\"])\\\n",
+    "    or (result1== [\"b\",\"b\"] and result2 == [\"b\",\"b\"]) or (result1== [\"b\",\"b\"] and result2 == [\"b\",\"r\"])\\\n",
+    "    or (result1== [\"b\",\"b\"] and result2 == [\"r\",\"b\"]) or (result1== [\"b\",\"b\"] and result2 == [\"r\",\"r\"])\\\n",
+    "    or (result1== [\"b\",\"r\"] and result2 == [\"b\",\"r\"]) or (result1== [\"b\",\"r\"] and result2 == [\"r\",\"b\"])\\\n",
+    "    or (result1== [\"b\",\"r\"] and result2 == [\"r\",\"r\"]) or (result1== [\"r\",\"b\"] and result2 == [\"r\",\"b\"])\\\n",
+    "    or (result1== [\"r\",\"b\"] and result2 == [\"r\",\"r\"]) or (result1== [\"r\",\"r\"] and result2 == [\"r\",\"r\"])\\\n",
+    "    or(result2== [\"a\",\"b\"] and result1 == [\"a\",\"b\"]) or (result1== [\"a\",\"b\"] and result2 == [\"a\",\"r\"])\\\n",
+    "    or (result2== [\"a\",\"b\"] and result1 == [\"b\",\"r\"]) or (result2== [\"a\",\"b\"] and result1 == [\"b\",\"b\"])\\\n",
+    "    or (result2== [\"a\",\"b\"] and result1 == [\"a\",\"r\"]) or (result2== [\"a\",\"b\"] and result1 == [\"r\",\"b\"])\\\n",
+    "    or (result2== [\"a\",\"b\"] and result1 == [\"r\",\"r\"]) or (result2== [\"a\",\"r\"] and result1 == [\"a\",\"r\"])\\\n",
+    "    or (result2== [\"a\",\"r\"] and result1 == [\"b\",\"b\"]) or (result2== [\"a\",\"r\"] and result1 == [\"b\",\"r\"])\\\n",
+    "    or (result2== [\"a\",\"r\"] and result1 == [\"r\",\"b\"]) or (result2== [\"a\",\"r\"] and result1 == [\"r\",\"r\"])\\\n",
+    "    or (result2== [\"b\",\"a\"] and result1 == [\"b\",\"a\"]) or (result2== [\"b\",\"a\"] and result1 == [\"r\",\"a\"])\\\n",
+    "    or (result2== [\"b\",\"b\"] and result1 == [\"b\",\"b\"]) or (result2== [\"b\",\"b\"] and result1 == [\"b\",\"r\"])\\\n",
+    "    or (result2== [\"b\",\"b\"] and result1 == [\"r\",\"b\"]) or (result2== [\"b\",\"b\"] and result1 == [\"r\",\"r\"])\\\n",
+    "    or (result2== [\"b\",\"r\"] and result1 == [\"b\",\"r\"]) or (result2== [\"b\",\"r\"] and result1 == [\"r\",\"b\"])\\\n",
+    "    or (result2== [\"b\",\"r\"] and result1 == [\"r\",\"r\"]) or (result2== [\"r\",\"b\"] and result1 == [\"r\",\"b\"])\\\n",
+    "    or (result2== [\"r\",\"b\"] and result1 == [\"r\",\"r\"]) or (result2== [\"r\",\"r\"] and result1 == [\"r\",\"r\"]):\n",
+    "        pont.append([0,0])\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"a\",\"a\"]) or (result2== [\"a\",\"a\"] and result1 == [\"a\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=a)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"a\",\"b\"]) or (result2== [\"a\",\"a\"] and result1 == [\"a\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=b)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"a\",\"r\"]) or (result2== [\"a\",\"a\"] and result1 == [\"a\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=c)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"b\",\"a\"]) or (result2== [\"a\",\"a\"] and result1 == [\"b\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=d)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"b\",\"b\"]) or (result2== [\"a\",\"a\"] and result1 == [\"b\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=e)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"b\",\"r\"]) or (result2== [\"a\",\"a\"] and result1 == [\"b\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=f)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"r\",\"a\"]) or (result2== [\"a\",\"a\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=g)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"r\",\"b\"]) or (result2== [\"a\",\"a\"] and result1 == [\"r\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=h)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"r\",\"r\"]) or (result2== [\"a\",\"a\"] and result1 == [\"r\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=i)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"b\"] and result2 == [\"b\",\"a\"]) or (result2== [\"a\",\"b\"] and result1 == [\"b\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=j)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"b\"] and result2 == [\"r\",\"a\"]) or (result2== [\"a\",\"b\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=k)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"r\"] and result2 == [\"b\",\"a\"]) or (result2== [\"a\",\"r\"] and result1 == [\"b\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=l)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"r\"] and result2 == [\"r\",\"a\"]) or (result2== [\"a\",\"r\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=m)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"b\",\"b\"]) or (result2== [\"b\",\"a\"] and result1 == [\"b\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=n)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"b\",\"r\"]) or (result2== [\"b\",\"a\"] and result1 == [\"b\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=o)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"r\",\"b\"]) or (result2== [\"b\",\"a\"] and result1 == [\"r\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=p)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"r\",\"r\"]) or (result2== [\"b\",\"a\"] and result1 == [\"r\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=q)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"b\"] and result2 == [\"r\",\"a\"]) or (result2== [\"b\",\"b\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=r)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"r\"] and result2 == [\"r\",\"a\"]) or (result2== [\"b\",\"r\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=s)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"r\",\"a\"] and result2 == [\"r\",\"a\"]) or (result2== [\"r\",\"a\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=t)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"r\",\"a\"] and result2 == [\"r\",\"b\"]) or (result2== [\"r\",\"a\"] and result1 == [\"r\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=u)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"r\",\"a\"] and result2 == [\"r\",\"r\"]) or (result2== [\"r\",\"a\"] and result1 == [\"r\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=v)]\n",
+    "        point.append(z)\n",
+    "    return point"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25],\n",
+       " [0.5, 0.25, 0.25]]"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a=[[0.5,0.25,0.25]for j in range(22)]\n",
+    "a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[0, 1]]"
+      ]
+     },
+     "execution_count": 37,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "kekka= ritoku([0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],\n",
+    " [0.5, 0.25, 0.25],)\n",
+    "kekka"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[1, 2, 3]"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a=[1,2,3]\n",
+    "def b():\n",
+    "    if a == [1,2,3]:\n",
+    "        return a\n",
+    "c=b()\n",
+    "c"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[[0, 0],\n",
+       " [0, 1],\n",
+       " [1, 0],\n",
+       " [1, 0],\n",
+       " [0, 1],\n",
+       " [1, 0],\n",
+       " [0, 1],\n",
+       " [0, 0],\n",
+       " [0, 0],\n",
+       " [0, 1]]"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "point=[]#point　= [[一回目のplayer1の得点,一回目のplayer2の得点],[2回目のplayer1の得点,2回目のplayer2の得点]と続いていく]\n",
+    "from numpy import *\n",
+    "x=[[0,0],[0,1],[1,0]]\n",
+    "y=[0,1,2]\n",
+    "a=[0.5,0.25,0.25]\n",
+    "for i in range(10):\n",
+    "    z=x[random.choice(y,p=a)]\n",
+    "    point.append(z)\n",
+    "point"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a=[[0,1,2],[3,4,5]]\n",
+    "len(a)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "#classのお勉強が必要ね\n",
+    "from numpy import*\n",
+    "point= []#point　= [[一回目のplayer1の得点,一回目のplayer2の得点],[2回目のplayer1の得点,2回目のplayer2の得点]と続いていく]\n",
+    "t = len(point)+1 #今何期か\n",
+    "#あらかじめ手を決めておく戦略 - player1とする\n",
+    "kimeuchi=[[\"a\"],[\"a\"],[\"b\"],[\"r\"]]\n",
+    "for i in range(len(kimeuchi)):\n",
+    "    kimeuchi[i].append(\"a\")\n",
+    "z= [\"b\",\"r\"]\n",
+    "for i in range(len(kimeuchi)):\n",
+    "    if kimeuchi[i][0]==\"a\":\n",
+    "        kimeuchi[i][1] = random.choice(z)#リストから一個をランダム抽出http://qiita.com/yubais/items/bf9ce0a8fefdcc0b0c97\n",
+    "kimeuchi*2#六十回分とりあえず決めた\n",
+    "result1 = kimeuchi[t]\n",
+    "\n",
+    "#最初はattack一回前に出した手は使わず、残りをランダムにして手を出してしまう戦略 - playr2とする\n",
+    "tekito = [[\"a\" for i in range(2)] for j in range(5)]#http://sonickun.hatenablog.com/entry/2014/06/13/132821より\n",
+    "z=[\"b\",\"r\"]\n",
+    "v=[\"a\",\"b\",\"r\"]\n",
+    "for i in range(1,len(tekito)):\n",
+    "        v.remove(tekito[i-1][0])\n",
+    "        tekito[i][0]= random.choice(v)\n",
+    "        v.append(tekito[i-1][0])\n",
+    "        if [i][0]==\"a\":\n",
+    "            tekito[i][1] = random.choice(z)\n",
+    "result2=tekito[t]\n",
+    "\n",
+    "def ritoku(h,j,k,l,m,n,o,pq,r,s,t,u,v,a=[0.5,0.25,0.25],b=[0.0,0.3,0.7],c= [0.0,0.1,0.9],d=[0.3,0.6,0.1],e=[0.0,0.4,0.6],f=[0.0,0.4,0.6],g=[0.3,0.6,0.1]):\n",
+    "    #point= []#point　= [[一回目のplayer1の得点,一回目のplayer2の得点],[2回目のplayer1の得点,2回目のplayer2の得点]と続いていく]\n",
+    "    x=[[0,0],[1,0],[0,1]]\n",
+    "    y=[0,1,2]\n",
+    "    if (result1== [\"a\",\"b\"] and result2 == [\"a\",\"b\"]) or (result1== [\"a\",\"b\"] and result2 == [\"a\",\"r\"])\\\n",
+    "    or (result1== [\"a\",\"b\"] and result2 == [\"b\",\"r\"]) or (result1== [\"a\",\"b\"] and result2 == [\"b\",\"b\"])\\\n",
+    "    or (result1== [\"a\",\"b\"] and result2 == [\"a\",\"r\"]) or (result1== [\"a\",\"b\"] and result2 == [\"r\",\"b\"])\\\n",
+    "    or (result1== [\"a\",\"b\"] and result2 == [\"r\",\"r\"]) or (result1== [\"a\",\"r\"] and result2 == [\"a\",\"r\"])\\\n",
+    "    or (result1== [\"a\",\"r\"] and result2 == [\"b\",\"b\"]) or (result1== [\"a\",\"r\"] and result2 == [\"b\",\"r\"])\\\n",
+    "    or (result1== [\"a\",\"r\"] and result2 == [\"r\",\"b\"]) or (result1== [\"a\",\"r\"] and result2 == [\"r\",\"r\"])\\\n",
+    "    or (result1== [\"b\",\"a\"] and result2 == [\"b\",\"a\"]) or (result1== [\"b\",\"a\"] and result2 == [\"r\",\"a\"])\\\n",
+    "    or (result1== [\"b\",\"b\"] and result2 == [\"b\",\"b\"]) or (result1== [\"b\",\"b\"] and result2 == [\"b\",\"r\"])\\\n",
+    "    or (result1== [\"b\",\"b\"] and result2 == [\"r\",\"b\"]) or (result1== [\"b\",\"b\"] and result2 == [\"r\",\"r\"])\\\n",
+    "    or (result1== [\"b\",\"r\"] and result2 == [\"b\",\"r\"]) or (result1== [\"b\",\"r\"] and result2 == [\"r\",\"b\"])\\\n",
+    "    or (result1== [\"b\",\"r\"] and result2 == [\"r\",\"r\"]) or (result1== [\"r\",\"b\"] and result2 == [\"r\",\"b\"])\\\n",
+    "    or (result1== [\"r\",\"b\"] and result2 == [\"r\",\"r\"]) or (result1== [\"r\",\"r\"] and result2 == [\"r\",\"r\"])\\\n",
+    "    or(result2== [\"a\",\"b\"] and result1 == [\"a\",\"b\"]) or (result1== [\"a\",\"b\"] and result2 == [\"a\",\"r\"])\\\n",
+    "    or (result2== [\"a\",\"b\"] and result1 == [\"b\",\"r\"]) or (result2== [\"a\",\"b\"] and result1 == [\"b\",\"b\"])\\\n",
+    "    or (result2== [\"a\",\"b\"] and result1 == [\"a\",\"r\"]) or (result2== [\"a\",\"b\"] and result1 == [\"r\",\"b\"])\\\n",
+    "    or (result2== [\"a\",\"b\"] and result1 == [\"r\",\"r\"]) or (result2== [\"a\",\"r\"] and result1 == [\"a\",\"r\"])\\\n",
+    "    or (result2== [\"a\",\"r\"] and result1 == [\"b\",\"b\"]) or (result2== [\"a\",\"r\"] and result1 == [\"b\",\"r\"])\\\n",
+    "    or (result2== [\"a\",\"r\"] and result1 == [\"r\",\"b\"]) or (result2== [\"a\",\"r\"] and result1 == [\"r\",\"r\"])\\\n",
+    "    or (result2== [\"b\",\"a\"] and result1 == [\"b\",\"a\"]) or (result2== [\"b\",\"a\"] and result1 == [\"r\",\"a\"])\\\n",
+    "    or (result2== [\"b\",\"b\"] and result1 == [\"b\",\"b\"]) or (result2== [\"b\",\"b\"] and result1 == [\"b\",\"r\"])\\\n",
+    "    or (result2== [\"b\",\"b\"] and result1 == [\"r\",\"b\"]) or (result2== [\"b\",\"b\"] and result1 == [\"r\",\"r\"])\\\n",
+    "    or (result2== [\"b\",\"r\"] and result1 == [\"b\",\"r\"]) or (result2== [\"b\",\"r\"] and result1 == [\"r\",\"b\"])\\\n",
+    "    or (result2== [\"b\",\"r\"] and result1 == [\"r\",\"r\"]) or (result2== [\"r\",\"b\"] and result1 == [\"r\",\"b\"])\\\n",
+    "    or (result2== [\"r\",\"b\"] and result1 == [\"r\",\"r\"]) or (result2== [\"r\",\"r\"] and result1 == [\"r\",\"r\"]):\n",
+    "        pont.append([0,0])\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"a\",\"a\"]) or (result2== [\"a\",\"a\"] and result1 == [\"a\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=a)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"a\",\"b\"]) or (result2== [\"a\",\"a\"] and result1 == [\"a\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=b)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"a\",\"r\"]) or (result2== [\"a\",\"a\"] and result1 == [\"a\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=c)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"b\",\"a\"]) or (result2== [\"a\",\"a\"] and result1 == [\"b\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=d)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"b\",\"b\"]) or (result2== [\"a\",\"a\"] and result1 == [\"b\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=e)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"b\",\"r\"]) or (result2== [\"a\",\"a\"] and result1 == [\"b\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=f)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"r\",\"a\"]) or (result2== [\"a\",\"a\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=g)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"r\",\"b\"]) or (result2== [\"a\",\"a\"] and result1 == [\"r\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=h)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"a\"] and result2 == [\"r\",\"r\"]) or (result2== [\"a\",\"a\"] and result1 == [\"r\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=i)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"b\"] and result2 == [\"b\",\"a\"]) or (result2== [\"a\",\"b\"] and result1 == [\"b\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=j)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"b\"] and result2 == [\"r\",\"a\"]) or (result2== [\"a\",\"b\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=k)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"r\"] and result2 == [\"b\",\"a\"]) or (result2== [\"a\",\"r\"] and result1 == [\"b\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=l)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"a\",\"r\"] and result2 == [\"r\",\"a\"]) or (result2== [\"a\",\"r\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=m)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"b\",\"b\"]) or (result2== [\"b\",\"a\"] and result1 == [\"b\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=n)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"b\",\"r\"]) or (result2== [\"b\",\"a\"] and result1 == [\"b\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=o)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"r\",\"b\"]) or (result2== [\"b\",\"a\"] and result1 == [\"r\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=p)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"a\"] and result2 == [\"r\",\"r\"]) or (result2== [\"b\",\"a\"] and result1 == [\"r\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=q)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"b\"] and result2 == [\"r\",\"a\"]) or (result2== [\"b\",\"b\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=r)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"b\",\"r\"] and result2 == [\"r\",\"a\"]) or (result2== [\"b\",\"r\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=s)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"r\",\"a\"] and result2 == [\"r\",\"a\"]) or (result2== [\"r\",\"a\"] and result1 == [\"r\",\"a\"]):\n",
+    "        z=x[random.choice(y,p=t)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"r\",\"a\"] and result2 == [\"r\",\"b\"]) or (result2== [\"r\",\"a\"] and result1 == [\"r\",\"b\"]):\n",
+    "        z=x[random.choice(y,p=u)]\n",
+    "        point.append(z)\n",
+    "    elif (result1== [\"r\",\"a\"] and result2 == [\"r\",\"r\"]) or (result2== [\"r\",\"a\"] and result1 == [\"r\",\"r\"]):\n",
+    "        z=x[random.choice(y,p=v)]\n",
+    "        point.append(z)\n",
+    "    return point\n",
+    "\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 2",
+   "language": "python",
+   "name": "python2"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 2
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython2",
+   "version": "2.7.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}
